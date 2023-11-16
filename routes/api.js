@@ -9,6 +9,12 @@ router.get("/car-types", vehicleListingController.carsTypeList);
 router.get("/car-models", vehicleListingController.carsModelsList);
 router.get("/bike-types", vehicleListingController.bikesTypeList);
 router.get("/bike-models", vehicleListingController.bikesModelsList);
-router.post("/vehicle-booking-submit", vehicleBookingController.vehicleBooking);
 
+// POST /api/vehicle-booking-submit
+router.post(
+  "/vehicle-booking-submit",
+  vehicleBookingController.vehicleBookingValidationRules,
+  vehicleBookingController.validateRequest,
+  vehicleBookingController.vehicleBooking
+);
 module.exports = router;
