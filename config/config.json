@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Anubhav@98010",
+    "database": "vehicle_rental_api",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "Anubhav@98010",
+    "database": "vehicle_rental_api",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "Anubhav@98010",
+    "database": "vehicle_rental_api",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
