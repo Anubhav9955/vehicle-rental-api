@@ -73,8 +73,6 @@ const vehicleBooking = async (req, res) => {
       where: whereClause,
     });
 
-    console.log("existingBooking-------", existingBooking);
-
     if (existingBooking) {
       // booking overlap
       return res.status(409).json({

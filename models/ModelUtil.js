@@ -1,29 +1,35 @@
 const Sequelize = require("sequelize");
 const path = require("path");
 
-const createAndReturn = (model, data, transaction) => {
-  const modelOptions = {};
-  if (transaction) {
-    modelOptions.transaction = transaction;
+const createAndReturn = async (model, data) => {
+  try {
+    const returnedData = await model.create(data);
+
+    return returnedData && returnedData.dataValues
+      ? returnedData.get({ plain: true })
+      : null;
+  } catch (error) {
+    console.error("Error in createAndReturn:", error);
+    throw error;
   }
-
-  return model.create(data, modelOptions).then((returnedData) => {
-    if (returnedData && returnedData.dataValues) {
-      return returnedData.get({ plain: true });
-    }
-
-    return null;
-  });
 };
 
-const findOne = (model, modelParams) => {
-  return model.findOne(modelParams).then((returnedData) => {
-    if (returnedData && returnedData.dataValues) {
-      return returnedData.get({ plain: true });
-    }
+const findOne = async (model, modelParams) => {
+  try {
+    const returnedData = await model.findOne(modelParams);
 
-    return null;
-  });
+    return returnedData && returnedData.dataValues
+      ? returnedData.get({ plain: true })
+      : null;
+  } catch (error) {
+    console.error("Error in findOne:", error);
+    throw error;
+  }
+};
+
+module.exports = {
+  createAndReturn,
+  findOne,
 };
 
 const findAll = async (model, modelParams) => {
